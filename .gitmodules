@@ -1,0 +1,3 @@
+[submodule "extensions/SemanticMediaWiki"]
+	path = extensions/SemanticMediaWiki
+	url = https://github.com/SemanticMediaWiki/SemanticMediaWiki.git

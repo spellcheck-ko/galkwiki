@@ -1,0 +1,1 @@
+# Galkwi SMW docker image
