@@ -14,22 +14,26 @@ RUN apt-get update && \
         mariadb-client \
         curl
 
-RUN cd /var/www/ && \
+RUN cd /var/www/html && \
     curl -fSL -o mediawiki-1.29.1.tar.gz \
         https://releases.wikimedia.org/mediawiki/1.29/mediawiki-1.29.1.tar.gz && \
     tar -xzf mediawiki-1.29.1.tar.gz && \
     rm *.tar.gz && \
-    rm -r html && \
-    mv mediawiki-1.29.1 html
+    mv mediawiki-1.29.1 w
 
-RUN cd /var/www/html/extensions && \
+RUN cd /var/www/html/w/extensions && \
     curl -fSL -o SemanticMediaWiki.tgz \
         https://github.com/SemanticMediaWiki/SemanticMediaWiki/releases/download/2.5.4/Semantic_MediaWiki_2.5.4_and_dependencies.tgz && \
     tar zxvf SemanticMediaWiki.tgz && \
     rm -f SemanticMediaWiki.tgz
 
-COPY ./image/LocalSettings.php /var/www/html/LocalSettings.php.dist
+COPY ./image/LocalSettings.php /var/www/html/w/LocalSettings.php.dist
 COPY ./image/setup.sh ./image/run.sh /
+COPY ./image/000-galkwiki.conf /etc/apache2/sites-available/
+
+RUN a2enmod rewrite && \
+    a2dissite 000-default && \
+    a2ensite 000-galkwiki
 
 ENTRYPOINT ["/bin/bash","/run.sh"]
 

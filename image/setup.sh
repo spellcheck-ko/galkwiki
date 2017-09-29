@@ -1,6 +1,6 @@
 set -e
 
-cd /var/www/html
+cd /var/www/html/w
 
 # wait for db
 while ! mysqladmin ping -h db --silent; do
