@@ -10,17 +10,19 @@ done
 LANG=ko_KR.UTF-8
 export LANG
 
-echo language is $LANG
-
 php maintenance/install.php \
-    --dbname galkwiki --dbpass password --dbserver db --dbtype mysql \
-    --dbuser root \
-    --scriptpath "" \
-    --installdbpass password --installdbuser root \
-    --lang ko --pass adminpass \
+    --dbserver db --dbtype mysql --dbname galkwiki \
+    --dbuser root --dbpass $MEDIAWIKI_DB_PASSWORD \
+    --scriptpath "/w" \
+    --installdbpass $MEDIAWIKI_DB_PASSWORD --installdbuser root \
+    --lang ko --pass $MEDIAWIKI_ADMIN_PASSWORD \
     "갈퀴" Admin
 
-mv LocalSettings.php LocalSettings.php.install
-cp LocalSettings.php.dist LocalSettings.php
+mv LocalSettings.php conf/LocalSettings.php.install
+sed -e s%@MEDIAWIKI_URL@%$MEDIAWIKI_URL%';'s%@MEDIAWIKI_DB_PASSWORD@%$MEDIAWIKI_DB_PASSWORD% \
+    LocalSettings.php.dist > conf/LocalSettings.php
+ln -s conf/LocalSettings.php LocalSettings.php
 
+php maintenance/update.php
+php extensions/FlaggedRevs/maintenance/updateAutoPromote.php
 php extensions/SemanticMediaWiki/maintenance/SMW_setup.php

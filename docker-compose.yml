@@ -1,12 +1,25 @@
-db:
-  image: mariadb
-  environment:
-    - MYSQL_ROOT_PASSWORD=password
-wiki:
-  build: .
-  ports:
-    - 8080:80
-  links:
-    -  db
-  environment:
-    - MEDIAWIKI_DB_PASSWORD=password
+version: '2'
+services:
+  db:
+    image: mariadb
+    volumes:
+      - volume-db:/var/lib/mysql/galkwiki
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+  wiki:
+    build: .
+    ports:
+      - 8080:80
+    links:
+      -  db
+    volumes:
+      - volume-log:/var/log/apache2
+      - volume-conf:/var/www/html/w/conf
+    environment:
+      - MEDIAWIKI_URL=http://localhost:8080
+      - MEDIAWIKI_DB_PASSWORD=password
+      - MEDIAWIKI_ADMIN_PASSWORD=adminpass
+volumes:
+  volume-db:
+  volume-conf:
+  volume-log:
