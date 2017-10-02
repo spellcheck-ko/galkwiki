@@ -155,7 +155,12 @@ wfLoadExtension( 'WikiEditor' );
 
 include_once('extensions/FlaggedRevs/FlaggedRevs.php');
 
+wfLoadExtension( 'PageForms' );
+wfLoadExtension( 'SemanticFormsSelect' );
+
 require_once "$IP/extensions/SemanticMediaWiki/SemanticMediaWiki.php";
 enableSemantics('localhost');
 
 $wgGroupPermissions['*']['edit'] = false;
+$wgGroupPermissions['sysop']['deletelogentry'] = true;
+$wgGroupPermissions['sysop']['deleterevision'] = true;

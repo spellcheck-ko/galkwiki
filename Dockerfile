@@ -15,7 +15,7 @@ RUN apt-get update && \
         mariadb-client
 
 RUN cd /var/www/html && \
-    curl -fSL https://releases.wikimedia.org/mediawiki/1.29/mediawiki-1.29.1.tar.gz /app/mediawiki-1.29.1.tar.gz | tar zxvf - && \
+    curl -fSL https://releases.wikimedia.org/mediawiki/1.29/mediawiki-1.29.1.tar.gz | tar zxvf - && \
     mv /var/www/html/mediawiki-1.29.1 /var/www/html/w
 
 RUN cd /var/www/html/w/extensions && \
@@ -24,6 +24,14 @@ RUN cd /var/www/html/w/extensions && \
 RUN cd /var/www/html/w/extensions && \
     curl -fSL https://github.com/wikimedia/mediawiki-extensions-FlaggedRevs/archive/677e27cded00b9883b031bfd83e84ea240fdc93d.tar.gz | tar zxvf - && \
     mv mediawiki-extensions-FlaggedRevs-677e27cded00b9883b031bfd83e84ea240fdc93d FlaggedRevs
+
+RUN cd /var/www/html/w/extensions && \
+    curl -fSL https://github.com/wikimedia/mediawiki-extensions-PageForms/archive/4.1.2.tar.gz | tar zxvf - && \
+    mv mediawiki-extensions-PageForms-4.1.2 PageForms
+
+RUN cd /var/www/html/w/extensions && \
+    curl -fSL https://github.com/SemanticMediaWiki/SemanticFormsSelect/archive/2.1.1.tar.gz | tar zxvf - && \
+    mv SemanticFormsSelect-2.1.1 SemanticFormsSelect
 
 COPY ./image/000-galkwiki.conf /etc/apache2/sites-available/
 RUN a2enmod rewrite && \
@@ -35,8 +43,5 @@ COPY ./image/LocalSettings.php.dist /var/www/html/w/LocalSettings.php.dist
 COPY ./image/setup.sh ./image/run.sh /app/
 COPY ./image/galkwi.png /var/www/html/w/resources/assets/galkwi.png
 
-
-WORKDIR /app
 ENTRYPOINT ["/bin/bash","/app/run.sh"]
-
 EXPOSE 80
