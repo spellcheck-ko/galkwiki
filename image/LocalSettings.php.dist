@@ -110,9 +110,9 @@ $wgUpgradeKey = "fb5e1d8648d01440";
 ## appropriate copyright notice / icon. GNU Free Documentation
 ## License and Creative Commons licenses are supported so far.
 $wgRightsPage = ""; # Set to the title of a wiki page that describes your license/copyright
-$wgRightsUrl = "";
-$wgRightsText = "";
-$wgRightsIcon = "";
+$wgRightsUrl = "https://creativecommons.org/licenses/by-nc-sa/2.0/kr/";
+$wgRightsText = "크리에이티브 커먼즈 저작자표시-동일조건변경허락 2.0 대한민국 라이선스";
+$wgRightsIcon = "https://i.creativecommons.org/l/by-sa/2.0/kr/88x31.png";
 
 # Path to the GNU diff3 utility. Used for conflict resolution.
 $wgDiff3 = "/usr/bin/diff3";
@@ -154,13 +154,17 @@ wfLoadExtension( 'WikiEditor' );
 # Add more configuration options below.
 
 include_once('extensions/FlaggedRevs/FlaggedRevs.php');
-
-wfLoadExtension( 'PageForms' );
-wfLoadExtension( 'SemanticFormsSelect' );
+require_once "$IP/extensions/Variables/Variables.php";
+require_once "$IP/extensions/Loops/Loops.php";
 
 require_once "$IP/extensions/SemanticMediaWiki/SemanticMediaWiki.php";
 enableSemantics('localhost');
 
+wfLoadExtension( 'PageForms' );
+wfLoadExtension( 'SemanticFormsSelect' );
+
 $wgGroupPermissions['*']['edit'] = false;
 $wgGroupPermissions['sysop']['deletelogentry'] = true;
 $wgGroupPermissions['sysop']['deleterevision'] = true;
+
+$smwgShowFactbox = SMW_FACTBOX_NONEMPTY;

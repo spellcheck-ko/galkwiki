@@ -22,16 +22,20 @@ RUN cd /var/www/html/w/extensions && \
     curl -fSL https://github.com/SemanticMediaWiki/SemanticMediaWiki/releases/download/2.5.4/Semantic_MediaWiki_2.5.4_and_dependencies.tgz | tar zxvf -
 
 RUN cd /var/www/html/w/extensions && \
-    curl -fSL https://github.com/wikimedia/mediawiki-extensions-FlaggedRevs/archive/677e27cded00b9883b031bfd83e84ea240fdc93d.tar.gz | tar zxvf - && \
-    mv mediawiki-extensions-FlaggedRevs-677e27cded00b9883b031bfd83e84ea240fdc93d FlaggedRevs
+    curl -fSL https://extdist.wmflabs.org/dist/extensions/FlaggedRevs-REL1_29-c818480.tar.gz | tar zxvf -
 
 RUN cd /var/www/html/w/extensions && \
-    curl -fSL https://github.com/wikimedia/mediawiki-extensions-PageForms/archive/4.1.2.tar.gz | tar zxvf - && \
-    mv mediawiki-extensions-PageForms-4.1.2 PageForms
+    curl -fSL https://extdist.wmflabs.org/dist/extensions/PageForms-REL1_29-bb3327e.tar.gz | tar zxvf -
 
 RUN cd /var/www/html/w/extensions && \
     curl -fSL https://github.com/SemanticMediaWiki/SemanticFormsSelect/archive/2.1.1.tar.gz | tar zxvf - && \
     mv SemanticFormsSelect-2.1.1 SemanticFormsSelect
+
+RUN cd /var/www/html/w/extensions && \
+    curl -fSL https://extdist.wmflabs.org/dist/extensions/Loops-REL1_29-f9fe1ad.tar.gz | tar zxvf -
+
+RUN cd /var/www/html/w/extensions && \
+    curl -fSL https://extdist.wmflabs.org/dist/extensions/Variables-REL1_29-7a95992.tar.gz | tar zxvf -
 
 COPY ./image/000-galkwiki.conf /etc/apache2/sites-available/
 RUN a2enmod rewrite && \
