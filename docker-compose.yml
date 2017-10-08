@@ -3,7 +3,7 @@ services:
   db:
     image: mariadb
     volumes:
-      - volume-db:/var/lib/mysql/galkwiki
+      - volume-db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
   wiki:

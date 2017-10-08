@@ -168,3 +168,5 @@ $wgGroupPermissions['sysop']['deletelogentry'] = true;
 $wgGroupPermissions['sysop']['deleterevision'] = true;
 
 $smwgShowFactbox = SMW_FACTBOX_NONEMPTY;
+
+$wgFlaggedRevsNamespaces = [ NS_MAIN, NS_FILE, NS_TEMPLATE, NS_PROJECT ];
