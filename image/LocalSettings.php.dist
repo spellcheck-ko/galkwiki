@@ -167,6 +167,8 @@ $wgGroupPermissions['*']['edit'] = false;
 $wgGroupPermissions['sysop']['deletelogentry'] = true;
 $wgGroupPermissions['sysop']['deleterevision'] = true;
 
+$smwgQMaxLimit = 1000000;
+$smwgQUpperbound = 1000000;
 $smwgShowFactbox = SMW_FACTBOX_NONEMPTY;
 
 $wgFlaggedRevsNamespaces = [ NS_MAIN, NS_FILE, NS_TEMPLATE, NS_PROJECT ];
