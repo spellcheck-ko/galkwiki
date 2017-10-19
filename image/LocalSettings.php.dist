@@ -172,3 +172,7 @@ $smwgQUpperbound = 1000000;
 $smwgShowFactbox = SMW_FACTBOX_NONEMPTY;
 
 $wgFlaggedRevsNamespaces = [ NS_MAIN, NS_FILE, NS_TEMPLATE, NS_PROJECT ];
+
+$wgLocaltimezone = 'Asia/Seoul';
+// Set to timezone offset in minutes as calculated by PHP
+$wgLocalTZoffset = date('Z') / 60;
