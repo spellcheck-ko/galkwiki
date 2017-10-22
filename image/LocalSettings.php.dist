@@ -170,6 +170,7 @@ $wgGroupPermissions['sysop']['deleterevision'] = true;
 $smwgQMaxLimit = 1000000;
 $smwgQUpperbound = 1000000;
 $smwgShowFactbox = SMW_FACTBOX_NONEMPTY;
+$smwgExportResourcesAsIri = true;
 
 $wgFlaggedRevsNamespaces = [ NS_MAIN, NS_FILE, NS_TEMPLATE, NS_PROJECT ];
 
