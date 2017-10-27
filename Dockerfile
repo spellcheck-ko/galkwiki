@@ -12,7 +12,8 @@ RUN apt-get update && \
         php7.0 php7.0-cli php7.0-gd php7.0-mbstring php7.0-mysql php7.0-xml \
         composer \
         curl \
-        mariadb-client
+        mariadb-client \
+        vim
 
 RUN cd /var/www/html && \
     curl -fSL https://releases.wikimedia.org/mediawiki/1.29/mediawiki-1.29.1.tar.gz | tar zxvf - && \

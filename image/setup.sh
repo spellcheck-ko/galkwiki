@@ -29,8 +29,8 @@ if [ $INIT_DB = yes ]; then
 fi
 
 if [ $INIT_CONF = yes ]; then
-    SECRET_KEY=`grep 'wgSecretKey =' LocalSettings.php.install | cut -c17-90`
-    UPGRADE_KEY=`grep 'wgUpgradeKey =' LocalSettings.php.install |cut -c18-33`
+    SECRET_KEY=`grep 'wgSecretKey =' conf/LocalSettings.php.install | cut -c17-80`
+    UPGRADE_KEY=`grep 'wgUpgradeKey =' conf/LocalSettings.php.install |cut -c18-33`
     sed -e s%@MEDIAWIKI_URL@%$MEDIAWIKI_URL%';'s%@MEDIAWIKI_DB_PASSWORD@%$MEDIAWIKI_DB_PASSWORD%';'s%@SECRET_KEY@%$SECRET_KEY%';'s%@UPGRADE_KEY@%$UPGRADE_KEY% \
         LocalSettings.php.dist > conf/LocalSettings.php
     ln -s conf/LocalSettings.php LocalSettings.php
