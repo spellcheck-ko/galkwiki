@@ -6,6 +6,7 @@ services:
       - volume-db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
+    restart: on-failure
   wiki:
     build: .
     ports:
