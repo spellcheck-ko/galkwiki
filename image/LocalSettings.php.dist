@@ -164,7 +164,7 @@ require_once "$IP/extensions/Variables/Variables.php";
 require_once "$IP/extensions/Loops/Loops.php";
 
 require_once "$IP/extensions/SemanticMediaWiki/SemanticMediaWiki.php";
-enableSemantics('localhost');
+enableSemantics('galkwiki.pyok.org');
 
 wfLoadExtension( 'PageForms' );
 wfLoadExtension( 'SemanticFormsSelect' );
@@ -182,3 +182,5 @@ $wgFlaggedRevsNamespaces = [ NS_MAIN, NS_FILE, NS_TEMPLATE, NS_PROJECT ];
 
 $wgLocaltimezone = 'Asia/Seoul';
 date_default_timezone_set($wgLocaltimezone);
+
+$wgMemoryLimit = '256M';
