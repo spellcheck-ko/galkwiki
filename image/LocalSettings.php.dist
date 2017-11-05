@@ -44,7 +44,8 @@ $wgEnableEmail = true;
 $wgEnableUserEmail = true; # UPO
 
 $wgSMTP = array(
-        'host' => 'localhost',
+	#'host' => 'localhost',
+        'host' => '172.18.0.1',
         'IDHost' => 'pyok.org',
         'port' => 25,
 );
